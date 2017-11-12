@@ -12,14 +12,14 @@ import (
 type segment struct {
 	feed  *bufio.Reader
 	r     *ring.Ring
-	white bool
+	shiny bool
 }
 
 func newSegment(feed io.Reader, length int) *segment {
 	return &segment{
 		feed:  bufio.NewReader(feed),
 		r:     ring.New(length),
-		white: rand.Float32() > 0.8,
+		shiny: rand.Float32() > 0.8,
 	}
 }
 
@@ -39,7 +39,7 @@ func (s *segment) draw(x, y int) {
 	if y >= s.r.Len() {
 		termbox.SetCell(x, y-s.r.Len(), ' ', termbox.ColorDefault, termbox.ColorDefault)
 	}
-	if s.white {
+	if s.shiny {
 		for offset := 0; offset < min(5, s.r.Len()); offset++ {
 			termbox.SetCell(x, y-offset, s.rune(-offset), termbox.Attribute(255-offset*3), termbox.ColorDefault)
 		}
