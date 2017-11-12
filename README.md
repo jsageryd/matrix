@@ -3,7 +3,7 @@ Unfortunately, no one can be told what Matrix is. You will have to see it for
 yourself.
 
 ## Demo
-[![Demo](https://asciinema.org/a/o6YPx3h6gVJNzCN2d5XpzHWoi.png)](https://asciinema.org/a/o6YPx3h6gVJNzCN2d5XpzHWoi?autoplay=1)
+[![Demo](https://asciinema.org/a/3eO97cLBJTs5LiPftbG8WLxj5.png)](https://asciinema.org/a/3eO97cLBJTs5LiPftbG8WLxj5?autoplay=1)
 
 ## Installation
 ```
