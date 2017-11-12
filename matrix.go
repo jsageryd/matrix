@@ -58,7 +58,7 @@ func (m *matrix) stream(stop <-chan struct{}) {
 	width, height := termbox.Size()
 	x := rand.Intn(width)
 	segmentLength := rand.Intn(height/2) + 1
-	s := newSegment(m.feed, segmentLength)
+	s := newSegment(m.feed, segmentLength, "white")
 
 	speed := 50 + (rand.Intn(100))
 

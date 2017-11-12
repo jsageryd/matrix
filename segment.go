@@ -12,13 +12,15 @@ import (
 type segment struct {
 	feed  *bufio.Reader
 	r     *ring.Ring
+	color string
 	shiny bool
 }
 
-func newSegment(feed io.Reader, length int) *segment {
+func newSegment(feed io.Reader, length int, color string) *segment {
 	return &segment{
 		feed:  bufio.NewReader(feed),
 		r:     ring.New(length),
+		color: color,
 		shiny: rand.Float32() > 0.8,
 	}
 }
@@ -41,11 +43,30 @@ func (s *segment) draw(x, y int) {
 	}
 	if s.shiny {
 		for offset := 0; offset < min(5, s.r.Len()); offset++ {
-			termbox.SetCell(x, y-offset, s.rune(-offset), termbox.Attribute(255-offset*3), termbox.ColorDefault)
+			termbox.SetCell(x, y-offset, s.rune(-offset), termbox.Attribute(s.colorShade(4-offset)), termbox.ColorDefault)
 		}
 	} else {
-		termbox.SetCell(x, y, s.rune(0), termbox.Attribute(240), termbox.ColorDefault)
+		termbox.SetCell(x, y, s.rune(0), termbox.Attribute(s.colorShade(0)), termbox.ColorDefault)
 	}
+}
+
+func (s *segment) colorShade(n int) int {
+	n = max(0, n)
+	n = min(4, n)
+
+	switch s.color {
+	case "white":
+		return []int{240, 244, 248, 252, 255}[n]
+	default:
+		return []int{240, 244, 248, 252, 255}[n]
+	}
+}
+
+func max(i, j int) int {
+	if i > j {
+		return i
+	}
+	return j
 }
 
 func min(i, j int) int {
