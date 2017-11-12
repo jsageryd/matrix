@@ -21,7 +21,7 @@ func main() {
 
 	rand.Seed(time.Now().UnixNano())
 
-	color := flag.String("c", "white", "colour")
+	color := flag.String("c", "white", "colour (white, blue, green, red, yellow, orange)")
 	flag.Parse()
 
 	newMatrix(*color).enter()
