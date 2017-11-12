@@ -11,12 +11,14 @@ import (
 type matrix struct {
 	feed             io.Reader
 	streamsPerSecond int
+	color            string
 }
 
-func newMatrix() *matrix {
+func newMatrix(color string) *matrix {
 	return &matrix{
 		feed:             randomRuneFeed{runes: []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#€%&/()=?<>,.-;:_'^*$|[]\\{}")},
 		streamsPerSecond: 50,
+		color:            color,
 	}
 }
 
@@ -58,7 +60,7 @@ func (m *matrix) stream(stop <-chan struct{}) {
 	width, height := termbox.Size()
 	x := rand.Intn(width)
 	segmentLength := rand.Intn(height/2) + 1
-	s := newSegment(m.feed, segmentLength, "white")
+	s := newSegment(m.feed, segmentLength, m.color)
 
 	speed := 50 + (rand.Intn(100))
 

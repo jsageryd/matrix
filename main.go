@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"math/rand"
 	"os"
@@ -20,5 +21,8 @@ func main() {
 
 	rand.Seed(time.Now().UnixNano())
 
-	newMatrix().enter()
+	color := flag.String("c", "white", "colour")
+	flag.Parse()
+
+	newMatrix(*color).enter()
 }
