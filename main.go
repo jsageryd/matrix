@@ -13,7 +13,7 @@ import (
 func main() {
 	rand.Seed(time.Now().UnixNano())
 
-	color := flag.String("c", "white", "colour (white, blue, green, red, yellow, orange)")
+	color := flag.String("c", "white", "colour (white, blue, green, red, yellow, orange, pink)")
 	flag.Parse()
 
 	if err := termbox.Init(); err != nil {
