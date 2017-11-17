@@ -39,6 +39,23 @@ func (m *matrix) enter() {
 			if ev.Key == termbox.KeyEsc || ev.Key == termbox.KeyCtrlC || ev.Ch == 'q' {
 				close(stop)
 			}
+
+			switch ev.Ch {
+			case 'w':
+				m.color = "white"
+			case 'b':
+				m.color = "blue"
+			case 'g':
+				m.color = "green"
+			case 'r':
+				m.color = "red"
+			case 'y':
+				m.color = "yellow"
+			case 'o':
+				m.color = "orange"
+			case 'p':
+				m.color = "pink"
+			}
 		}
 	}()
 
