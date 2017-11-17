@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"math/rand"
 	"os"
 	"time"
 
@@ -11,8 +10,6 @@ import (
 )
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
-
 	color := flag.String("c", "white", "colour (white, blue, green, red, yellow, orange, pink)")
 	flag.Parse()
 
@@ -24,5 +21,5 @@ func main() {
 
 	termbox.SetOutputMode(termbox.Output256)
 
-	newMatrix(*color).enter()
+	newMatrix(time.Now().UnixNano(), *color).enter()
 }

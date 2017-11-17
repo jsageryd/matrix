@@ -4,30 +4,32 @@ import (
 	"bufio"
 	"container/ring"
 	"io"
-	"math/rand"
+	"time"
 
 	termbox "github.com/nsf/termbox-go"
 )
 
 type segment struct {
-	feed  *bufio.Reader
-	r     *ring.Ring
-	color string
-	shiny bool
+	feed      *bufio.Reader
+	r         *ring.Ring
+	column    int
+	startTime time.Duration
+	color     string
+	shiny     bool
+	speed     int // blocks per second
+	runesRead int
 }
 
-func newSegment(feed io.Reader, length int, color string) *segment {
+func newSegment(feed io.Reader, column, length int, startTime time.Duration, color string, speed int, shiny bool) *segment {
 	return &segment{
-		feed:  bufio.NewReader(feed),
-		r:     ring.New(length),
-		color: color,
-		shiny: rand.Float32() > 0.8,
+		feed:      bufio.NewReader(feed),
+		r:         ring.New(length),
+		color:     color,
+		startTime: startTime,
+		shiny:     shiny,
+		column:    column,
+		speed:     speed,
 	}
-}
-
-func (s *segment) step() {
-	s.r = s.r.Next()
-	s.r.Value, _, _ = s.feed.ReadRune()
 }
 
 func (s *segment) rune(n int) rune {
@@ -37,16 +39,36 @@ func (s *segment) rune(n int) rune {
 	return 0
 }
 
-func (s *segment) draw(x, y int) {
-	if y >= s.r.Len() {
-		termbox.SetCell(x, y-s.r.Len(), ' ', termbox.ColorDefault, termbox.ColorDefault)
+func (s *segment) position(now time.Duration) int {
+	return int(((now - s.startTime) * time.Duration(s.speed)) / time.Second)
+}
+
+func (s *segment) length() int {
+	return s.r.Len()
+}
+
+func (s *segment) draw(now time.Duration) {
+	y := s.position(now)
+
+	for s.runesRead <= y {
+		s.r = s.r.Next()
+		s.r.Value, _, _ = s.feed.ReadRune()
+		s.runesRead++
 	}
+
+	// This takes care of cleaning the path behind the segment as it progresses.
+	// It will break if the speed of the segments is higher than the refresh rate,
+	// but this is typically not the case so it should be ok to ignore for now.
+	if y >= s.r.Len() {
+		termbox.SetCell(s.column, y-s.r.Len(), ' ', termbox.ColorDefault, termbox.ColorDefault)
+	}
+
 	if s.shiny {
 		for offset := 0; offset < min(5, s.r.Len()); offset++ {
-			termbox.SetCell(x, y-offset, s.rune(-offset), termbox.Attribute(s.colorShade(4-offset)), termbox.ColorDefault)
+			termbox.SetCell(s.column, y-offset, s.rune(-offset), termbox.Attribute(s.colorShade(4-offset)), termbox.ColorDefault)
 		}
 	} else {
-		termbox.SetCell(x, y, s.rune(0), termbox.Attribute(s.colorShade(0)), termbox.ColorDefault)
+		termbox.SetCell(s.column, y, s.rune(0), termbox.Attribute(s.colorShade(0)), termbox.ColorDefault)
 	}
 }
 
