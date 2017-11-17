@@ -43,12 +43,12 @@ func (m *matrix) enter() {
 	}()
 
 	go func() {
-		for range time.Tick(time.Second / 60) {
+		for range time.Tick(time.Second / 20) {
 			select {
 			case <-stop:
 				return
 			default:
-				m.step(time.Second / 60)
+				m.step(time.Second / 20)
 				m.draw()
 				termbox.Flush()
 			}
