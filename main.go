@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/gdamore/tcell/termbox"
+	"github.com/gdamore/tcell"
 )
 
 func main() {
@@ -22,13 +22,16 @@ func main() {
 	color := flag.String("c", "white", "colour")
 	flag.Parse()
 
-	if err := termbox.Init(); err != nil {
+	screen, err := tcell.NewScreen()
+	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
-	defer termbox.Close()
+	defer screen.Fini()
 
-	termbox.SetOutputMode(termbox.Output256)
-
-	newMatrix(time.Now().UnixNano(), *color).enter()
+	m := newMatrix(time.Now().UnixNano(), screen, *color)
+	if err := m.enter(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
 }

@@ -6,10 +6,11 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/gdamore/tcell/termbox"
+	"github.com/gdamore/tcell"
 )
 
 type matrix struct {
+	screen    tcell.Screen
 	now       time.Duration
 	seedFeed  *rand.Rand
 	feed      io.Reader
@@ -19,8 +20,9 @@ type matrix struct {
 	segments  *list.List
 }
 
-func newMatrix(seed int64, color string) *matrix {
+func newMatrix(seed int64, screen tcell.Screen, color string) *matrix {
 	return &matrix{
+		screen:    screen,
 		seedFeed:  rand.New(rand.NewSource(seed)),
 		feed:      randomRuneFeed{runes: []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#€%&/()=?<>,.-;:_'^*$|[]\\{}")},
 		color:     color,
@@ -30,33 +32,43 @@ func newMatrix(seed int64, color string) *matrix {
 	}
 }
 
-func (m *matrix) enter() {
+func (m *matrix) enter() error {
+	if err := m.screen.Init(); err != nil {
+		return err
+	}
+
 	stop := make(chan struct{})
 
 	go func() {
 		for {
-			ev := termbox.PollEvent()
-			if ev.Key == termbox.KeyEsc || ev.Key == termbox.KeyCtrlC || ev.Ch == 'q' {
+			ev, ok := m.screen.PollEvent().(*tcell.EventKey)
+			if !ok {
+				continue
+			}
+
+			if ev.Key() == tcell.KeyEsc || ev.Key() == tcell.KeyCtrlC || (ev.Key() == tcell.KeyRune && ev.Rune() == 'q') {
 				close(stop)
 			}
 
-			switch ev.Ch {
-			case 'w':
-				m.color = "white"
-			case 'b':
-				m.color = "blue"
-			case 'g':
-				m.color = "green"
-			case 'r':
-				m.color = "red"
-			case 'y':
-				m.color = "yellow"
-			case 'o':
-				m.color = "orange"
-			case 'm':
-				m.color = "magenta"
-			case 'c':
-				m.color = "cyan"
+			if ev.Key() == tcell.KeyRune {
+				switch ev.Rune() {
+				case 'w':
+					m.color = "white"
+				case 'b':
+					m.color = "blue"
+				case 'g':
+					m.color = "green"
+				case 'r':
+					m.color = "red"
+				case 'y':
+					m.color = "yellow"
+				case 'o':
+					m.color = "orange"
+				case 'm':
+					m.color = "magenta"
+				case 'c':
+					m.color = "cyan"
+				}
 			}
 		}
 	}()
@@ -69,16 +81,18 @@ func (m *matrix) enter() {
 			default:
 				m.step(time.Second / 20)
 				m.draw()
-				termbox.Flush()
+				m.screen.Show()
 			}
 		}
 	}()
 
 	<-stop
+
+	return nil
 }
 
 func (m *matrix) step(d time.Duration) {
-	width, height := termbox.Size()
+	width, height := m.screen.Size()
 
 	// Kill old segments
 	var next *list.Element
@@ -107,7 +121,7 @@ func (m *matrix) step(d time.Duration) {
 				len := rng.Intn(height/2) + 3
 				speed := rng.Intn(15) + 5
 				shiny := rng.Float32() > 0.8
-				s := newSegment(m.feed, x, len, m.now, m.color, speed, shiny)
+				s := newSegment(m.screen, m.feed, x, len, m.now, m.color, speed, shiny)
 				m.segments.PushBack(s)
 			}
 		}

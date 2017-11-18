@@ -10,7 +10,7 @@
 [[projects]]
   branch = "master"
   name = "github.com/gdamore/tcell"
-  packages = [".","termbox"]
+  packages = ["."]
   revision = "87c64c441ab917c7429d6c8a75e9d5b7952a9d5b"
 
 [[projects]]
@@ -34,6 +34,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "11580ee7303e9e5e7f680c8da0dd5be85d384eebb7c7c5b30c6007cc681efa98"
+  inputs-digest = "adcd9c8686c117c6d19e882987bca6afff60b8998fe93f20ebb622a6afd274cf"
   solver-name = "gps-cdcl"
   solver-version = 1
