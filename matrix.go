@@ -55,6 +55,8 @@ func (m *matrix) enter() {
 				m.color = "orange"
 			case 'm':
 				m.color = "magenta"
+			case 'c':
+				m.color = "cyan"
 			}
 		}
 	}()

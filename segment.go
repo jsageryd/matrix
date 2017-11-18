@@ -91,6 +91,8 @@ func (s *segment) colorShade(n int) int {
 		return []int{166, 202, 208, 214, 220}[n] + 1
 	case "magenta":
 		return []int{89, 126, 162, 198, 199}[n] + 1
+	case "cyan":
+		return []int{31, 45, 51, 87, 195}[n] + 1
 	default:
 		return []int{240, 244, 248, 252, 255}[n] + 1
 	}
