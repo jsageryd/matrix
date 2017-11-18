@@ -53,8 +53,8 @@ func (m *matrix) enter() {
 				m.color = "yellow"
 			case 'o':
 				m.color = "orange"
-			case 'p':
-				m.color = "pink"
+			case 'm':
+				m.color = "magenta"
 			}
 		}
 	}()

@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	color := flag.String("c", "white", "colour (white, blue, green, red, yellow, orange, pink)")
+	color := flag.String("c", "white", "colour (white, blue, green, red, yellow, orange, magenta)")
 	flag.Parse()
 
 	if err := termbox.Init(); err != nil {
