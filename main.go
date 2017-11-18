@@ -10,7 +10,16 @@ import (
 )
 
 func main() {
-	color := flag.String("c", "white", "colour (white, blue, green, red, yellow, orange, magenta, cyan)")
+	flag.Usage = func() {
+		fmt.Fprintln(os.Stderr, "Matrix\n\nFlags:")
+		flag.PrintDefaults()
+		fmt.Fprintln(os.Stderr)
+		fmt.Fprintln(os.Stderr, "Valid colours are:\n  white, blue, green, red, yellow, orange, magenta, cyan")
+		fmt.Fprintln(os.Stderr)
+		fmt.Fprintln(os.Stderr, "Colour can also be changed by typing the initial\n(e.g. 'c' for 'cyan') while running.")
+	}
+
+	color := flag.String("c", "white", "colour")
 	flag.Parse()
 
 	if err := termbox.Init(); err != nil {
