@@ -6,7 +6,7 @@ import (
 	"io"
 	"time"
 
-	termbox "github.com/nsf/termbox-go"
+	"github.com/gdamore/tcell/termbox"
 )
 
 type segment struct {

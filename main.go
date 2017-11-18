@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	termbox "github.com/nsf/termbox-go"
+	"github.com/gdamore/tcell/termbox"
 )
 
 func main() {
