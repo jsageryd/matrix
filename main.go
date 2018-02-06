@@ -10,6 +10,9 @@ import (
 )
 
 func main() {
+	exitCode := 0
+	defer func() { os.Exit(exitCode) }()
+
 	flag.Usage = func() {
 		fmt.Fprintln(os.Stderr, "Matrix\n\nFlags:")
 		flag.PrintDefaults()
@@ -25,13 +28,15 @@ func main() {
 	screen, err := tcell.NewScreen()
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+		exitCode = 1
+		return
 	}
 	defer screen.Fini()
 
 	m := newMatrix(time.Now().UnixNano(), screen, *color)
 	if err := m.enter(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+		exitCode = 1
+		return
 	}
 }
