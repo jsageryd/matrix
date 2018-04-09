@@ -4,6 +4,7 @@ import (
 	"container/list"
 	"io"
 	"math/rand"
+	"sync"
 	"time"
 
 	"github.com/gdamore/tcell"
@@ -15,6 +16,7 @@ var (
 )
 
 type matrix struct {
+	mu        sync.RWMutex
 	screen    tcell.Screen
 	now       time.Duration
 	seedFeed  *rand.Rand
@@ -35,6 +37,30 @@ func newMatrix(seed int64, screen tcell.Screen, color string, feed io.Reader) *m
 		xdensity:  0.03,
 		segments:  list.New(),
 	}
+}
+
+func (m *matrix) getColor() string {
+	m.mu.RLock()
+	defer m.mu.RUnlock()
+	return m.color
+}
+
+func (m *matrix) setColor(c string) {
+	m.mu.Lock()
+	m.color = c
+	m.mu.Unlock()
+}
+
+func (m *matrix) getFeed() io.Reader {
+	m.mu.RLock()
+	defer m.mu.RUnlock()
+	return m.feed
+}
+
+func (m *matrix) setFeed(f io.Reader) {
+	m.mu.Lock()
+	m.feed = f
+	m.mu.Unlock()
 }
 
 func (m *matrix) enter() error {
@@ -58,25 +84,25 @@ func (m *matrix) enter() error {
 			if ev.Key() == tcell.KeyRune {
 				switch ev.Rune() {
 				case 'w':
-					m.color = "white"
+					m.setColor("white")
 				case 'b':
-					m.color = "blue"
+					m.setColor("blue")
 				case 'g':
-					m.color = "green"
+					m.setColor("green")
 				case 'r':
-					m.color = "red"
+					m.setColor("red")
 				case 'y':
-					m.color = "yellow"
+					m.setColor("yellow")
 				case 'o':
-					m.color = "orange"
+					m.setColor("orange")
 				case 'm':
-					m.color = "magenta"
+					m.setColor("magenta")
 				case 'c':
-					m.color = "cyan"
+					m.setColor("cyan")
 				case 'a':
-					m.feed = feedAlpha
+					m.setFeed(feedAlpha)
 				case 'k':
-					m.feed = feedKata
+					m.setFeed(feedKata)
 				}
 			}
 		}
@@ -102,6 +128,9 @@ func (m *matrix) enter() error {
 
 func (m *matrix) step(d time.Duration) {
 	width, height := m.screen.Size()
+
+	color := m.getColor()
+	feed := m.getFeed()
 
 	// Kill old segments
 	var next *list.Element
@@ -130,7 +159,7 @@ func (m *matrix) step(d time.Duration) {
 				len := rng.Intn(height/2) + 3
 				speed := rng.Intn(15) + 5
 				shiny := rng.Float32() > 0.8
-				s := newSegment(m.screen, m.feed, x, len, m.now, m.color, speed, shiny)
+				s := newSegment(m.screen, feed, x, len, m.now, color, speed, shiny)
 				m.segments.PushBack(s)
 			}
 		}
