@@ -80,6 +80,7 @@ func (m *matrix) enter() error {
 
 			if ev.Key() == tcell.KeyEsc || ev.Key() == tcell.KeyCtrlC || (ev.Key() == tcell.KeyRune && ev.Rune() == 'q') {
 				close(stop)
+				return
 			}
 
 			if ev.Key() == tcell.KeyRune {
