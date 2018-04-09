@@ -22,9 +22,9 @@ func main() {
 		fmt.Fprintln(os.Stderr, "|")
 		fmt.Fprintln(os.Stderr, "| Colour can also be changed by typing the initial\n| (e.g. 'c' for 'cyan') while running.")
 		fmt.Fprintln(os.Stderr)
-		fmt.Fprintln(os.Stderr, "| Valid feeds: alpha, kata")
+		fmt.Fprintln(os.Stderr, "| Valid feeds: alpha, cyril, kata")
 		fmt.Fprintln(os.Stderr, "|")
-		fmt.Fprintln(os.Stderr, "| Feed can also be changed by typing the initial\n| (e.g. 'a' for 'alpha') while running.")
+		fmt.Fprintln(os.Stderr, "| Feed can also be changed by typing the initial\n| (e.g. 'a' for 'alpha', special case 'C' for 'cyril') while running.")
 	}
 
 	color := flag.String("c", "white", "colour")
@@ -36,6 +36,8 @@ func main() {
 	switch *feedStr {
 	case "alpha":
 		feed = feedAlpha
+	case "cyril":
+		feed = feedCyril
 	case "kata":
 		feed = feedKata
 	}

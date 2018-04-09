@@ -12,6 +12,7 @@ import (
 
 var (
 	feedAlpha = randomRuneFeed{runes: []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#€%&/()=?<>,.-;:_'^*$|[]\\{}")}
+	feedCyril = randomRuneFeed{runes: []rune("АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя0123456789!\"#€%&/()=?<>,.-;:_'^*$|[]\\{}")}
 	feedKata  = randomRuneFeed{runes: []rune("アイウエオカキクケコガギグゲゴサシスセソザジズゼゾタチツテトダヂヅデドナニヌネノハヒフヘホバビブベボパピプペポマミムメモヤユヨラリルレロワン")}
 )
 
@@ -101,6 +102,8 @@ func (m *matrix) enter() error {
 					m.setColor("cyan")
 				case 'a':
 					m.setFeed(feedAlpha)
+				case 'C':
+					m.setFeed(feedCyril)
 				case 'k':
 					m.setFeed(feedKata)
 				}
