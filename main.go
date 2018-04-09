@@ -40,6 +40,8 @@ func main() {
 		feed = feedCyril
 	case "kata":
 		feed = feedKata
+	default:
+		feed = feedAlpha
 	}
 
 	screen, err := tcell.NewScreen()
