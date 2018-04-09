@@ -102,13 +102,13 @@ func (m *matrix) enter() error {
 					m.setColor("magenta")
 				case 'c':
 					m.setColor("cyan")
-				case 'a':
+				case 'A':
 					m.setFeed(feedAlpha)
 				case 'C':
 					m.setFeed(feedCyril)
-				case 'd':
+				case 'D':
 					m.setFeed(feedDot)
-				case 'k':
+				case 'K':
 					m.setFeed(feedKata)
 				}
 			}

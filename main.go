@@ -24,7 +24,7 @@ func main() {
 		fmt.Fprintln(os.Stderr)
 		fmt.Fprintln(os.Stderr, "| Valid feeds: alpha, cyril, dot, kata")
 		fmt.Fprintln(os.Stderr, "|")
-		fmt.Fprintln(os.Stderr, "| Feed can also be changed by typing the initial\n| (e.g. 'a' for 'alpha', special case 'C' for 'cyril') while running.")
+		fmt.Fprintln(os.Stderr, "| Feed can also be changed by typing the upper-case initial\n| (e.g. 'A' for 'alpha') while running.")
 	}
 
 	color := flag.String("c", "white", "colour")
