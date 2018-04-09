@@ -22,7 +22,7 @@ func main() {
 		fmt.Fprintln(os.Stderr, "|")
 		fmt.Fprintln(os.Stderr, "| Colour can also be changed by typing the initial\n| (e.g. 'c' for 'cyan') while running.")
 		fmt.Fprintln(os.Stderr)
-		fmt.Fprintln(os.Stderr, "| Valid feeds: alpha, cyril, kata")
+		fmt.Fprintln(os.Stderr, "| Valid feeds: alpha, cyril, dot, kata")
 		fmt.Fprintln(os.Stderr, "|")
 		fmt.Fprintln(os.Stderr, "| Feed can also be changed by typing the initial\n| (e.g. 'a' for 'alpha', special case 'C' for 'cyril') while running.")
 	}
@@ -38,6 +38,8 @@ func main() {
 		feed = feedAlpha
 	case "cyril":
 		feed = feedCyril
+	case "dot":
+		feed = feedDot
 	case "kata":
 		feed = feedKata
 	default:
