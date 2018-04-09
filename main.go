@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io"
 	"os"
 	"time"
 
@@ -17,13 +18,27 @@ func main() {
 		fmt.Fprintln(os.Stderr, "Matrix\n\nFlags:")
 		flag.PrintDefaults()
 		fmt.Fprintln(os.Stderr)
-		fmt.Fprintln(os.Stderr, "Valid colours:\n  white, blue, green, red, yellow, orange, magenta, cyan")
+		fmt.Fprintln(os.Stderr, "| Valid colours:\n|   white, blue, green, red, yellow, orange, magenta, cyan")
+		fmt.Fprintln(os.Stderr, "|")
+		fmt.Fprintln(os.Stderr, "| Colour can also be changed by typing the initial\n| (e.g. 'c' for 'cyan') while running.")
 		fmt.Fprintln(os.Stderr)
-		fmt.Fprintln(os.Stderr, "Colour can also be changed by typing the initial\n(e.g. 'c' for 'cyan') while running.")
+		fmt.Fprintln(os.Stderr, "| Valid feeds: alpha, kata")
+		fmt.Fprintln(os.Stderr, "|")
+		fmt.Fprintln(os.Stderr, "| Feed can also be changed by typing the initial\n| (e.g. 'a' for 'alpha') while running.")
 	}
 
 	color := flag.String("c", "white", "colour")
+	feedStr := flag.String("f", "alpha", "feed")
 	flag.Parse()
+
+	var feed io.Reader
+
+	switch *feedStr {
+	case "alpha":
+		feed = feedAlpha
+	case "kata":
+		feed = feedKata
+	}
 
 	screen, err := tcell.NewScreen()
 	if err != nil {
@@ -33,7 +48,7 @@ func main() {
 	}
 	defer screen.Fini()
 
-	m := newMatrix(time.Now().UnixNano(), screen, *color)
+	m := newMatrix(time.Now().UnixNano(), screen, *color, feed)
 	if err := m.enter(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		exitCode = 1

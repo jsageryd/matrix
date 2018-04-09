@@ -9,6 +9,11 @@ import (
 	"github.com/gdamore/tcell"
 )
 
+var (
+	feedAlpha = randomRuneFeed{runes: []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#€%&/()=?<>,.-;:_'^*$|[]\\{}")}
+	feedKata  = randomRuneFeed{runes: []rune("アイウエオカキクケコガギグゲゴサシスセソザジズゼゾタチツテトダヂヅデドナニヌネノハヒフヘホバビブベボパピプペポマミムメモヤユヨラリルレロワン")}
+)
+
 type matrix struct {
 	screen    tcell.Screen
 	now       time.Duration
@@ -20,11 +25,11 @@ type matrix struct {
 	segments  *list.List
 }
 
-func newMatrix(seed int64, screen tcell.Screen, color string) *matrix {
+func newMatrix(seed int64, screen tcell.Screen, color string, feed io.Reader) *matrix {
 	return &matrix{
 		screen:    screen,
 		seedFeed:  rand.New(rand.NewSource(seed)),
-		feed:      randomRuneFeed{runes: []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#€%&/()=?<>,.-;:_'^*$|[]\\{}")},
+		feed:      feed,
 		color:     color,
 		frequency: 10,
 		xdensity:  0.03,
@@ -68,6 +73,10 @@ func (m *matrix) enter() error {
 					m.color = "magenta"
 				case 'c':
 					m.color = "cyan"
+				case 'a':
+					m.feed = feedAlpha
+				case 'k':
+					m.feed = feedKata
 				}
 			}
 		}
