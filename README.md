@@ -6,8 +6,7 @@
 Unfortunately, no one can be told what Matrix is. You will have to see it for
 yourself.
 
-## Demo
-[![Demo](https://asciinema.org/a/RxmiFcWADWw2H63sXVMZ1UmVO.png)](https://asciinema.org/a/RxmiFcWADWw2H63sXVMZ1UmVO?autoplay=1)
+![Screenshot](./matrix.png)
 
 ## Installation
 ```
