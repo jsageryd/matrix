@@ -3,37 +3,53 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:10300e23636df65b2bd1e047c45b1c559ab745c0f2c93cba1e51e566ed2581ef"
   name = "github.com/gdamore/encoding"
   packages = ["."]
+  pruneopts = "NUT"
   revision = "b23993cbb6353f0e6aa98d0ee318a34728f628b9"
 
 [[projects]]
   branch = "master"
+  digest = "1:38ae1134ebe62e1dcd3aac3d925a29ccdf9aa8d456f255b700fbb690d90112e0"
   name = "github.com/gdamore/tcell"
   packages = ["."]
+  pruneopts = "NUT"
   revision = "87c64c441ab917c7429d6c8a75e9d5b7952a9d5b"
 
 [[projects]]
   branch = "master"
+  digest = "1:c1b3aea328d5d8b23158a00994271648671e707885cd8aff3ee9015bfb4e620d"
   name = "github.com/lucasb-eyer/go-colorful"
   packages = ["."]
+  pruneopts = "NUT"
   revision = "231272389856c976b7500c4fffcc52ddf06ff4eb"
 
 [[projects]]
+  digest = "1:cb591533458f6eb6e2c1065ff3eac6b50263d7847deb23fc9f79b25bc608970e"
   name = "github.com/mattn/go-runewidth"
   packages = ["."]
+  pruneopts = "NUT"
   revision = "9e777a8366cce605130a531d2cd6363d07ad7317"
   version = "v0.0.2"
 
 [[projects]]
   branch = "master"
+  digest = "1:2d13f21186387fda67269db1a5660e2afc845561f727c9dd206b7f57c2537f85"
   name = "golang.org/x/text"
-  packages = ["encoding","encoding/internal/identifier","internal/gen","transform","unicode/cldr"]
+  packages = [
+    "encoding",
+    "encoding/internal/identifier",
+    "internal/gen",
+    "transform",
+    "unicode/cldr",
+  ]
+  pruneopts = "NUT"
   revision = "88f656faf3f37f690df1a32515b479415e1a6769"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "adcd9c8686c117c6d19e882987bca6afff60b8998fe93f20ebb622a6afd274cf"
+  input-imports = ["github.com/gdamore/tcell"]
   solver-name = "gps-cdcl"
   solver-version = 1
