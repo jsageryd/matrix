@@ -11,15 +11,17 @@ import (
 )
 
 var (
-	feedAlpha = randomRuneFeed{runes: []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#€%&/()=?<>,.-;:_'^*$|[]\\{}")}
-	feedBlock = randomRuneFeed{runes: []rune("█")}
-	feedCyril = randomRuneFeed{runes: []rune("АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя0123456789!\"#€%&/()=?<>,.-;:_'^*$|[]\\{}")}
-	feedDot   = randomRuneFeed{runes: []rune(".")}
-	feedGreek = randomRuneFeed{runes: []rune("ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσ/ςΤτΥυΦφΧχΨψΩω")}
-	feedHira  = randomRuneFeed{runes: []rune("あいうえおかきくけこがぎぐげごさしすせそざじずぜぞたちつてとだぢづでどなにぬねのはひふへほばびぶべぼぱぴぷぺぽまみむめもやゆよらりるれろわん")}
-	feedKata  = randomRuneFeed{runes: []rune("アイウエオカキクケコガギグゲゴサシスセソザジズゼゾタチツテトダヂヅデドナニヌネノハヒフヘホバビブベボパピプペポマミムメモヤユヨラリルレロワン")}
-	feedLine  = randomRuneFeed{runes: []rune("|")}
-	feedNum   = randomRuneFeed{runes: []rune("0123456789")}
+	feedAlpha   = randomRuneFeed{runes: []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#€%&/()=?<>,.-;:_'^*$|[]\\{}")}
+	feedBlock   = randomRuneFeed{runes: []rune("█")}
+	feedCyril   = randomRuneFeed{runes: []rune("АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя0123456789!\"#€%&/()=?<>,.-;:_'^*$|[]\\{}")}
+	feedDot     = randomRuneFeed{runes: []rune(".")}
+	feedGreek   = randomRuneFeed{runes: []rune("ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσ/ςΤτΥυΦφΧχΨψΩω")}
+	feedHangeul = randomRuneRangeFeed{from: 0xAC00, to: 0xD7AF}
+	feedHira    = randomRuneFeed{runes: []rune("あいうえおかきくけこがぎぐげごさしすせそざじずぜぞたちつてとだぢづでどなにぬねのはひふへほばびぶべぼぱぴぷぺぽまみむめもやゆよらりるれろわん")}
+	feedKata    = randomRuneFeed{runes: []rune("アイウエオカキクケコガギグゲゴサシスセソザジズゼゾタチツテトダヂヅデドナニヌネノハヒフヘホバビブベボパピプペポマミムメモヤユヨラリルレロワン")}
+	feedLine    = randomRuneFeed{runes: []rune("|")}
+	feedNum     = randomRuneFeed{runes: []rune("0123456789")}
+	feedZh      = randomRuneRangeFeed{from: 0x4E00, to: 0x9FEF}
 )
 
 type matrix struct {
@@ -119,12 +121,16 @@ func (m *matrix) enter() error {
 					m.setFeed(feedGreek)
 				case 'H':
 					m.setFeed(feedHira)
+				case 'J':
+					m.setFeed(feedHangeul)
 				case 'K':
 					m.setFeed(feedKata)
 				case 'L':
 					m.setFeed(feedLine)
 				case 'N':
 					m.setFeed(feedNum)
+				case 'Z':
+					m.setFeed(feedZh)
 				}
 			}
 		}
