@@ -12,7 +12,7 @@ import (
 
 var (
 	feedAlpha = randomRuneFeed{runes: []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#€%&/()=?<>,.-;:_'^*$|[]\\{}")}
-	feedBlock = randomRuneFeed{runes: []rune("▉▊▋")}
+	feedBlock = randomRuneFeed{runes: []rune("█")}
 	feedCyril = randomRuneFeed{runes: []rune("АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя0123456789!\"#€%&/()=?<>,.-;:_'^*$|[]\\{}")}
 	feedDot   = randomRuneFeed{runes: []rune(".")}
 	feedKata  = randomRuneFeed{runes: []rune("アイウエオカキクケコガギグゲゴサシスセソザジズゼゾタチツテトダヂヅデドナニヌネノハヒフヘホバビブベボパピプペポマミムメモヤユヨラリルレロワン")}
