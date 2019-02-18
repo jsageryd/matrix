@@ -42,8 +42,16 @@ func main() {
 		feed = feedCyril
 	case "dot":
 		feed = feedDot
+	case "greek":
+		feed = feedGreek
+	case "hira":
+		feed = feedHira
 	case "kata":
 		feed = feedKata
+	case "line":
+		feed = feedLine
+	case "num":
+		feed = feedNum
 	default:
 		feed = feedAlpha
 	}

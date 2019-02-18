@@ -15,7 +15,11 @@ var (
 	feedBlock = randomRuneFeed{runes: []rune("█")}
 	feedCyril = randomRuneFeed{runes: []rune("АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя0123456789!\"#€%&/()=?<>,.-;:_'^*$|[]\\{}")}
 	feedDot   = randomRuneFeed{runes: []rune(".")}
+	feedGreek = randomRuneFeed{runes: []rune("ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσ/ςΤτΥυΦφΧχΨψΩω")}
+	feedHira  = randomRuneFeed{runes: []rune("あいうえおかきくけこがぎぐげごさしすせそざじずぜぞたちつてとだぢづでどなにぬねのはひふへほばびぶべぼぱぴぷぺぽまみむめもやゆよらりるれろわん")}
 	feedKata  = randomRuneFeed{runes: []rune("アイウエオカキクケコガギグゲゴサシスセソザジズゼゾタチツテトダヂヅデドナニヌネノハヒフヘホバビブベボパピプペポマミムメモヤユヨラリルレロワン")}
+	feedLine  = randomRuneFeed{runes: []rune("|")}
+	feedNum   = randomRuneFeed{runes: []rune("0123456789")}
 )
 
 type matrix struct {
@@ -111,8 +115,16 @@ func (m *matrix) enter() error {
 					m.setFeed(feedCyril)
 				case 'D':
 					m.setFeed(feedDot)
+				case 'G':
+					m.setFeed(feedGreek)
+				case 'H':
+					m.setFeed(feedHira)
 				case 'K':
 					m.setFeed(feedKata)
+				case 'L':
+					m.setFeed(feedLine)
+				case 'N':
+					m.setFeed(feedNum)
 				}
 			}
 		}
