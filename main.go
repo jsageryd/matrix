@@ -22,7 +22,7 @@ func main() {
 		fmt.Fprintln(os.Stderr, "|")
 		fmt.Fprintln(os.Stderr, "| Colour can also be changed by typing the initial\n| (e.g. 'c' for 'cyan') while running.")
 		fmt.Fprintln(os.Stderr)
-		fmt.Fprintln(os.Stderr, "| Valid feeds: alpha, binary, block, cyril, dot, greek, hangeul, hex, hira, kata, line, num, zh")
+		fmt.Fprintln(os.Stderr, "| Valid feeds: alpha, binary, block, cyril, dot, greek, hangeul, hex, hira, kata, line, num, stdin, zh")
 		fmt.Fprintln(os.Stderr, "|")
 		fmt.Fprintln(os.Stderr, "| Feed can also be changed by typing the upper-case initial\n| (e.g. 'A' for 'alpha') while running.")
 		fmt.Fprintln(os.Stderr, "| Hex feed uses X. Binary feed uses 0.")
@@ -59,6 +59,8 @@ func main() {
 		feed = feedLine
 	case "num":
 		feed = feedNum
+	case "stdin":
+		feed = feedStdin
 	case "zh":
 		feed = feedZh
 	default:

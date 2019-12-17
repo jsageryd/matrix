@@ -4,6 +4,7 @@ import (
 	"container/list"
 	"io"
 	"math/rand"
+	"os"
 	"sync"
 	"time"
 
@@ -23,6 +24,7 @@ var (
 	feedKata    = randomRuneFeed{runes: []rune("アイウエオカキクケコガギグゲゴサシスセソザジズゼゾタチツテトダヂヅデドナニヌネノハヒフヘホバビブベボパピプペポマミムメモヤユヨラリルレロワン")}
 	feedLine    = randomRuneFeed{runes: []rune("|")}
 	feedNum     = randomRuneFeed{runes: []rune("0123456789")}
+	feedStdin   = os.Stdin
 	feedZh      = randomRuneRangeFeed{from: 0x4E00, to: 0x9FEF}
 )
 
@@ -133,6 +135,8 @@ func (m *matrix) enter() error {
 					m.setFeed(feedLine)
 				case 'N':
 					m.setFeed(feedNum)
+				case 'S':
+					m.setFeed(feedStdin)
 				case 'X':
 					m.setFeed(feedHex)
 				case 'Z':
