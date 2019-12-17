@@ -17,6 +17,7 @@ var (
 	feedDot     = randomRuneFeed{runes: []rune(".")}
 	feedGreek   = randomRuneFeed{runes: []rune("ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσ/ςΤτΥυΦφΧχΨψΩω")}
 	feedHangeul = randomRuneRangeFeed{from: 0xAC00, to: 0xD7AF}
+	feedHex     = randomRuneFeed{runes: []rune("0123456789abcdef")}
 	feedHira    = randomRuneFeed{runes: []rune("あいうえおかきくけこがぎぐげごさしすせそざじずぜぞたちつてとだぢづでどなにぬねのはひふへほばびぶべぼぱぴぷぺぽまみむめもやゆよらりるれろわん")}
 	feedKata    = randomRuneFeed{runes: []rune("アイウエオカキクケコガギグゲゴサシスセソザジズゼゾタチツテトダヂヅデドナニヌネノハヒフヘホバビブベボパピプペポマミムメモヤユヨラリルレロワン")}
 	feedLine    = randomRuneFeed{runes: []rune("|")}
@@ -129,6 +130,8 @@ func (m *matrix) enter() error {
 					m.setFeed(feedLine)
 				case 'N':
 					m.setFeed(feedNum)
+				case 'X':
+					m.setFeed(feedHex)
 				case 'Z':
 					m.setFeed(feedZh)
 				}
