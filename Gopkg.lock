@@ -2,40 +2,98 @@
 
 
 [[projects]]
-  branch = "master"
-  digest = "1:10300e23636df65b2bd1e047c45b1c559ab745c0f2c93cba1e51e566ed2581ef"
+  digest = "1:053c8b82c44fc384cca33724d4359235fa98e0cb8b135c392d8e14f396a2a7e8"
   name = "github.com/gdamore/encoding"
   packages = ["."]
   pruneopts = "NUT"
-  revision = "b23993cbb6353f0e6aa98d0ee318a34728f628b9"
+  revision = "6289cdc94c00ac4aa177771c5fce7af2f96b626d"
+  version = "v1.0.0"
 
 [[projects]]
-  branch = "master"
-  digest = "1:38ae1134ebe62e1dcd3aac3d925a29ccdf9aa8d456f255b700fbb690d90112e0"
+  digest = "1:b150fa3409e85e90fdb0c437e49eaa9049e2141703e663d5c5a37a617957224d"
   name = "github.com/gdamore/tcell"
-  packages = ["."]
+  packages = [
+    ".",
+    "terminfo",
+    "terminfo/a/adm3a",
+    "terminfo/a/aixterm",
+    "terminfo/a/alacritty",
+    "terminfo/a/ansi",
+    "terminfo/a/aterm",
+    "terminfo/b/beterm",
+    "terminfo/b/bsdos_pc",
+    "terminfo/base",
+    "terminfo/c/cygwin",
+    "terminfo/d/d200",
+    "terminfo/d/d210",
+    "terminfo/d/dtterm",
+    "terminfo/dynamic",
+    "terminfo/e/emacs",
+    "terminfo/e/eterm",
+    "terminfo/extended",
+    "terminfo/g/gnome",
+    "terminfo/h/hpterm",
+    "terminfo/h/hz1500",
+    "terminfo/k/konsole",
+    "terminfo/k/kterm",
+    "terminfo/l/linux",
+    "terminfo/p/pcansi",
+    "terminfo/r/rxvt",
+    "terminfo/s/screen",
+    "terminfo/s/simpleterm",
+    "terminfo/s/sun",
+    "terminfo/t/termite",
+    "terminfo/t/tvi910",
+    "terminfo/t/tvi912",
+    "terminfo/t/tvi921",
+    "terminfo/t/tvi925",
+    "terminfo/t/tvi950",
+    "terminfo/t/tvi970",
+    "terminfo/v/vt100",
+    "terminfo/v/vt102",
+    "terminfo/v/vt220",
+    "terminfo/v/vt320",
+    "terminfo/v/vt400",
+    "terminfo/v/vt420",
+    "terminfo/v/vt52",
+    "terminfo/w/wy50",
+    "terminfo/w/wy60",
+    "terminfo/w/wy99_ansi",
+    "terminfo/x/xfce",
+    "terminfo/x/xnuppc",
+    "terminfo/x/xterm",
+    "terminfo/x/xterm_kitty",
+  ]
   pruneopts = "NUT"
-  revision = "87c64c441ab917c7429d6c8a75e9d5b7952a9d5b"
+  revision = "4d152cc2622d491e1b0a034c3211b9df28c0ba2d"
+  version = "v1.3.0"
 
 [[projects]]
-  branch = "master"
-  digest = "1:c1b3aea328d5d8b23158a00994271648671e707885cd8aff3ee9015bfb4e620d"
+  digest = "1:46cd411094ae22c75cfd0e99a9865906006f97267686df2162b62067acbfd4d5"
   name = "github.com/lucasb-eyer/go-colorful"
   packages = ["."]
   pruneopts = "NUT"
-  revision = "231272389856c976b7500c4fffcc52ddf06ff4eb"
+  revision = "fadcb7c7fa1e47844a23f5ebea95219172166a56"
+  version = "v1.0.3"
 
 [[projects]]
-  digest = "1:cb591533458f6eb6e2c1065ff3eac6b50263d7847deb23fc9f79b25bc608970e"
+  digest = "1:f4662cffd65f141f68c0fd7faf9e945316c38d3a66c7ee79946b9238f2c0f327"
   name = "github.com/mattn/go-runewidth"
   packages = ["."]
   pruneopts = "NUT"
-  revision = "9e777a8366cce605130a531d2cd6363d07ad7317"
-  version = "v0.0.2"
+  revision = "14e809f6d78fcf9f48ff9b70981472b64c05f754"
+  version = "v0.0.9"
 
 [[projects]]
   branch = "master"
-  digest = "1:2d13f21186387fda67269db1a5660e2afc845561f727c9dd206b7f57c2537f85"
+  digest = "1:10bb247f9a87c421b2791d43e4a4bf65ca5b7676155479839ca47d9f2e2c5525"
+  name = "golang.org/x/sys"
+  packages = ["unix"]
+  pruneopts = "NUT"
+  revision = "85ca7c5b95cdf1e557abb38a283d1e61a5959c31"
+
+[[projects]]
+  digest = "1:cc38c2209a6c1f94debdfd96934865a258eac2f905a8d3f8fd56e7d0cfb85edd"
   name = "golang.org/x/text"
   packages = [
     "encoding",
@@ -45,7 +103,8 @@
     "unicode/cldr",
   ]
   pruneopts = "NUT"
-  revision = "88f656faf3f37f690df1a32515b479415e1a6769"
+  revision = "342b2e1fbaa52c93f31447ad2c6abc048c63e475"
+  version = "v0.3.2"
 
 [solve-meta]
   analyzer-name = "dep"
