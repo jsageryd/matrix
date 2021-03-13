@@ -95,7 +95,7 @@ func unescape(s string) string {
 				buf.WriteByte(c)
 			}
 		case CTRL:
-			buf.WriteByte(c - 0x40)
+			buf.WriteByte(c ^ 1<<6)
 			esc = NONE
 		case ESC:
 			switch c {
@@ -228,6 +228,7 @@ func getinfo(name string) (*terminfo.Terminfo, string, error) {
 	t.Bold = tc.getstr("bold")
 	t.Blink = tc.getstr("blink")
 	t.Dim = tc.getstr("dim")
+	t.Italic = tc.getstr("sitm")
 	t.Reverse = tc.getstr("rev")
 	t.EnterKeypad = tc.getstr("smkx")
 	t.ExitKeypad = tc.getstr("rmkx")
@@ -359,6 +360,9 @@ func getinfo(name string) (*terminfo.Terminfo, string, error) {
 		t.KeyCtrlShfDown = "\x1b[1;6B"
 		t.KeyCtrlShfRight = "\x1b[1;6C"
 		t.KeyCtrlShfLeft = "\x1b[1;6D"
+
+		t.KeyShfPgUp = "\x1b[5;2~"
+		t.KeyShfPgDn = "\x1b[6;2~"
 	}
 	// And also for Home and End
 	if t.KeyShfHome == "\x1b[1;2H" && t.KeyShfEnd == "\x1b[1;2F" {
@@ -505,6 +509,7 @@ func dotGoInfo(w io.Writer, terms []*TData) {
 		dotGoAddStr(w, "Underline", t.Underline)
 		dotGoAddStr(w, "Bold", t.Bold)
 		dotGoAddStr(w, "Dim", t.Dim)
+		dotGoAddStr(w, "Italic", t.Italic)
 		dotGoAddStr(w, "Blink", t.Blink)
 		dotGoAddStr(w, "Reverse", t.Reverse)
 		dotGoAddStr(w, "EnterKeypad", t.EnterKeypad)
@@ -648,6 +653,8 @@ func dotGoInfo(w io.Writer, terms []*TData) {
 		dotGoAddStr(w, "KeyMetaShfEnd", t.KeyMetaShfEnd)
 		dotGoAddStr(w, "KeyAltShfHome", t.KeyAltShfHome)
 		dotGoAddStr(w, "KeyAltShfEnd", t.KeyAltShfEnd)
+		dotGoAddStr(w, "KeyShfPgUp", t.KeyShfPgUp)
+		dotGoAddStr(w, "KeyShfPgDn", t.KeyShfPgDn)
 		fmt.Fprintln(w, "\t})")
 	}
 	fmt.Fprintln(w, "}")

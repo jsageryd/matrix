@@ -10,7 +10,7 @@
   version = "v1.0.0"
 
 [[projects]]
-  digest = "1:b150fa3409e85e90fdb0c437e49eaa9049e2141703e663d5c5a37a617957224d"
+  digest = "1:014d4e54fe60918b3a7fec34f6ceb5d5bfd559d9bd0bdeed46c2b9364f06d483"
   name = "github.com/gdamore/tcell"
   packages = [
     ".",
@@ -65,35 +65,46 @@
     "terminfo/x/xterm_kitty",
   ]
   pruneopts = "NUT"
-  revision = "4d152cc2622d491e1b0a034c3211b9df28c0ba2d"
-  version = "v1.3.0"
+  revision = "fcaa20f283682d6bbe19ceae067b37df3dc699d7"
+  version = "v1.4.0"
 
 [[projects]]
-  digest = "1:46cd411094ae22c75cfd0e99a9865906006f97267686df2162b62067acbfd4d5"
+  digest = "1:5e2d2d6f5792d9b11c8d196ba6895e6af733882ffb913e301a8730168bf7a433"
   name = "github.com/lucasb-eyer/go-colorful"
   packages = ["."]
   pruneopts = "NUT"
-  revision = "fadcb7c7fa1e47844a23f5ebea95219172166a56"
-  version = "v1.0.3"
+  revision = "d2b05a0d83cca9d610425691c3253d5f36d0ad06"
+  version = "v1.2.0"
 
 [[projects]]
-  digest = "1:f4662cffd65f141f68c0fd7faf9e945316c38d3a66c7ee79946b9238f2c0f327"
+  digest = "1:36de80b02e6ff20e07872007fa17f55d0f8e4c73c0c191abdc19286b3768cf30"
   name = "github.com/mattn/go-runewidth"
   packages = ["."]
   pruneopts = "NUT"
-  revision = "14e809f6d78fcf9f48ff9b70981472b64c05f754"
-  version = "v0.0.9"
+  revision = "59616a248b91ae20bf3eb93636a24c87d9ce6cea"
+  version = "v0.0.10"
+
+[[projects]]
+  digest = "1:e644b02192accfca6f351cf2611df249d502ab75f8cebb2e8b3976a3d6ee75f8"
+  name = "github.com/rivo/uniseg"
+  packages = ["."]
+  pruneopts = "NUT"
+  revision = "75711fccf6a3e85bc74c241e2dddd06a9bc9e53d"
+  version = "v0.2.0"
 
 [[projects]]
   branch = "master"
-  digest = "1:10bb247f9a87c421b2791d43e4a4bf65ca5b7676155479839ca47d9f2e2c5525"
+  digest = "1:9995184dc423d085ae48bc9d72626910e8d9d42ace506e40922eea8aa929e426"
   name = "golang.org/x/sys"
-  packages = ["unix"]
+  packages = [
+    "internal/unsafeheader",
+    "unix",
+  ]
   pruneopts = "NUT"
-  revision = "85ca7c5b95cdf1e557abb38a283d1e61a5959c31"
+  revision = "68d13333faf24bbe12c06419ed07e851a9dbf8f9"
 
 [[projects]]
-  digest = "1:cc38c2209a6c1f94debdfd96934865a258eac2f905a8d3f8fd56e7d0cfb85edd"
+  digest = "1:ea18d6eb9df80ee63186bf2993c1544a656becab81ce1c03e9f4e9ef5b35da61"
   name = "golang.org/x/text"
   packages = [
     "encoding",
@@ -103,8 +114,8 @@
     "unicode/cldr",
   ]
   pruneopts = "NUT"
-  revision = "342b2e1fbaa52c93f31447ad2c6abc048c63e475"
-  version = "v0.3.2"
+  revision = "75a595aef632b07c6eeaaa805adb6f0f66e4130e"
+  version = "v0.3.5"
 
 [solve-meta]
   analyzer-name = "dep"
