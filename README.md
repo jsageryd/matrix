@@ -6,6 +6,8 @@
 Unfortunately, no one can be told what Matrix is. You will have to see it for
 yourself.
 
+![Screenshot](./rabbit.png)
+
 ## Installation
 ```
 $ go get -u github.com/jsageryd/matrix
