@@ -10,7 +10,7 @@ yourself.
 
 ## Installation
 ```
-$ go get -u github.com/jsageryd/matrix
+go install github.com/jsageryd/matrix@latest
 ```
 
 ## License
