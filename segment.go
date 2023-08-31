@@ -99,17 +99,3 @@ func (s *segment) colorShade(n int) int {
 		return []int{240, 244, 248, 252, 255}[n]
 	}
 }
-
-func max(i, j int) int {
-	if i > j {
-		return i
-	}
-	return j
-}
-
-func min(i, j int) int {
-	if i < j {
-		return i
-	}
-	return j
-}
