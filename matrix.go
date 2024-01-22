@@ -194,7 +194,7 @@ func (m *matrix) step(d time.Duration) {
 		rng := rand.New(rand.NewSource(m.seedFeed.Int63()))
 		for x := 0; x < width; x++ {
 			if rng.Float32() <= m.xdensity {
-				len := rng.Intn(height/2) + 3
+				len := rng.Intn(max(height, 2)/2) + 3
 				speed := rng.Intn(15) + 5
 				shiny := rng.Float32() > 0.8
 				s := newSegment(m.screen, feed, x, len, m.now, color, speed, shiny)
