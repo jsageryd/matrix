@@ -18,7 +18,7 @@ var (
 	feedCyril   = randomRuneFeed{runes: []rune("АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя0123456789!\"#€%&/()=?<>,.-;:_'^*$|[]\\{}")}
 	feedDot     = randomRuneFeed{runes: []rune(".")}
 	feedGreek   = randomRuneFeed{runes: []rune("ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσ/ςΤτΥυΦφΧχΨψΩω")}
-	feedHangeul = randomRuneRangeFeed{from: 0xAC00, to: 0xD7AF}
+	feedHangeul = &randomRuneRangeFeed{from: 0xAC00, to: 0xD7AF, maxRunes: 100}
 	feedHex     = randomRuneFeed{runes: []rune("0123456789abcdef")}
 	feedHira    = randomRuneFeed{runes: []rune("あいうえおかきくけこがぎぐげごさしすせそざじずぜぞたちつてとだぢづでどなにぬねのはひふへほばびぶべぼぱぴぷぺぽまみむめもやゆよらりるれろわん")}
 	feedJamo    = randomRuneFeed{runes: []rune("ㄱㄲㄳㄴㄵㄶㄷㄸㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅃㅄㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ")}
@@ -26,7 +26,7 @@ var (
 	feedLine    = randomRuneFeed{runes: []rune("|")}
 	feedNum     = randomRuneFeed{runes: []rune("0123456789")}
 	feedStdin   = os.Stdin
-	feedZh      = randomRuneRangeFeed{from: 0x4E00, to: 0x9FEF}
+	feedZh      = &randomRuneRangeFeed{from: 0x4E00, to: 0x9FEF, maxRunes: 100}
 )
 
 type matrix struct {
