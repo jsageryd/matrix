@@ -123,12 +123,12 @@ func (m *matrix) enter() error {
 					m.setFeed(feedCyril)
 				case 'D':
 					m.setFeed(feedDot)
+				case 'E':
+					m.setFeed(feedHangeul)
 				case 'G':
 					m.setFeed(feedGreek)
 				case 'H':
 					m.setFeed(feedHira)
-				case 'J':
-					m.setFeed(feedHangeul)
 				case 'K':
 					m.setFeed(feedKata)
 				case 'L':
