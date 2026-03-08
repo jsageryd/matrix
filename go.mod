@@ -1,6 +1,6 @@
 module github.com/jsageryd/matrix
 
-go 1.21.0
+go 1.26.1
 
 require github.com/gdamore/tcell v1.4.0
 
